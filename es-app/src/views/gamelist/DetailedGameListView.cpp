@@ -23,11 +23,15 @@ DetailedGameListView::DetailedGameListView(Window* window, FileData* root) :
 	mList.setAlignment(TextListComponent<FileData*>::ALIGN_LEFT);
 	mList.setCursorChangedCallback([&](const CursorState& state) { updateInfoPanel(); });
 
+    removeChild(&mList);
+    
 	// image
 	mImage.setOrigin(0.5f, 0.5f);
 	mImage.setPosition(mSize.x() * 0.25f, mList.getPosition().y() + mSize.y() * 0.2125f);
 	mImage.setMaxSize(mSize.x() * (0.50f - 2*padding), mSize.y() * 0.4f);
 	addChild(&mImage);
+    
+    addChild(&mList);
 
 	// metadata labels + values
 	mLblRating.setText("Rating: ");
